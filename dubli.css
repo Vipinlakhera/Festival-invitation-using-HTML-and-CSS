@@ -1,0 +1,285 @@
+  /* Reset & Global Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(to bottom, #0d0d0d, #1a1a1a);
+  color: #fff;
+  overflow-x: hidden;
+}
+
+/* Header Section */
+header {
+  text-align: center;
+  padding: 20px;
+  background: linear-gradient(90deg, #ff6b00, #ffcc00);
+  color: #fff;
+  font-size: 2.5rem;
+  font-weight: bold;
+  text-shadow: 2px 2px 5px #000;
+  animation: glow 1.5s infinite alternate;
+}
+
+@keyframes glow {
+  from { text-shadow: 0 0 5px #ffcc00, 0 0 10px #ff9900, 0 0 15px #ff6600; }
+  to { text-shadow: 0 0 20px #ffcc33, 0 0 30px #ff6600, 0 0 40px #ff3300; }
+}
+
+/* Invitation Box */
+.invitation {
+  max-width: 900px;
+  margin: 40px auto;
+  background: rgba(255, 204, 102, 0.15);
+  border-radius: 20px;
+  padding: 20px;
+  box-shadow: 0 0 20px rgba(255, 204, 0, 0.4);
+  border: 2px solid gold;
+}
+
+/* Event Title */
+.invitation h1 {
+  font-size: 2.5rem;
+  color: gold;
+  text-align: center;
+  text-shadow: 2px 2px 5px #ff6600;
+}
+/* Celebrity Guests Grid */
+.celebrity-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 16px;
+  margin-top: 12px;
+}
+
+.celebrity {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  text-align: center;
+  padding: 10px;
+  border: 1px solid rgba(255, 200, 100, 0.12);
+  box-shadow: 0 4px 12px rgba(255, 200, 100, 0.15);
+  transition: transform 0.3s ease;
+}
+
+.celebrity img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 8px;
+  border: 3px solid rgba(255, 180, 80, 0.25);
+}
+
+.celebrity:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 20px rgba(255, 180, 60, 0.4);
+}
+img {
+    display: inline-block; /* Keeps them side by side */
+    margin-right: 10px;    /* Space between images */
+    width: 200px;          /* Increase size */
+    height: auto;          /* Keeps proportion */
+}
+
+.sweets-gallery {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;  /* aligns all images to the left */
+   gap: 12px;
+  align-items: center;
+  padding: 10px 0;
+}
+
+.sweets-gallery img {
+   width: 140px;     
+  height: 100px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 2px solid #ffcc33;
+  box-shadow: 0 0 8px rgba(255, 204, 51, 0.6);
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.sweets-gallery img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 15px rgba(255, 204, 51, 0.9);
+} 
+
+
+.celebrity strong {
+  color: #ffd36b;
+  font-size: 1.1rem;
+}
+/* Narrow, specific selector — less likely to be overridden */
+/* #sweets .sweets-gallery {
+  display: flex;
+  flex-wrap: wrap;         /* wrap on small screens */
+  /* gap: 20px;
+  justify-content: flex-start; /* align left */
+  /* align-items: flex-start;
+  padding: 8px 0;
+} */ */
+
+/* #sweets .sweets-gallery img {
+  width: 200px;            /* change size here */
+  /* height: auto;
+  object-fit: cover;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.18);
+  display: block;
+  flex: 0 0 auto;          /* keep fixed width in the row */
+  /* transition: transform .25s ease, box-shadow .25s ease;
+} 
+
+#sweets .sweets-gallery img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 18px rgba(0,0,0,0.28);
+} */ */
+/* .sweets-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 50px;
+  margin-top: 40px;
+  justify-items: start; /* Ensures images align to the left inside each cell */
+  /* justify-content: start; /* Ensures grid starts from left */
+/* .sweets-gallery img {
+    text-align: left; /* Align images to left */
+
+
+/* .sweets-gallery img {
+    margin-right: 10px; /* Space between images */
+    /* vertical-align: middle;
+} */ 
+
+/* .sweets-gallery img {
+  width: 100%;
+  height: 140px;
+  object-fit: cover;
+  border-radius: 12px;
+  border: 2px solid rgba(255, 170, 50, 0.3);
+  box-shadow: 0 6px 15px rgba(255, 160, 50, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.sweets-gallery img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 24px rgba(255, 190, 60, 0.5);
+} */ */ */
+
+/* Sweets Gallery */
+/* .sweets-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 14px;
+  margin-top: 12px;
+}
+
+.sweets-gallery img {
+  width: 100%;
+  height: 140px;
+  object-fit: cover;
+  border-radius: 12px;
+  border: 2px solid rgba(255, 170, 50, 0.3);
+  box-shadow: 0 6px 15px rgba(255, 160, 50, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.sweets-gallery img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 24px rgba(255, 190, 60, 0.5);
+} */
+.gallery {
+    text-align: left; /* Align images to left */
+}
+
+.gallery img {
+    margin-right: 10px; /* Space between images */
+    vertical-align: middle;
+}
+
+/* Paragraph Styling */
+.invitation p {
+  font-size: 1.2rem;
+  text-align: center;
+  color: #fff5cc;
+  line-height: 1.8;
+}
+
+/* Image Styling */
+.invitation img {
+  display: block;
+  max-width: 100%;
+  margin: 20px auto;
+  border-radius: 15px;
+  box-shadow: 0 0 20px rgba(255, 140, 0, 0.7);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.invitation img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 30px rgba(255, 204, 0, 0.9);
+}
+
+/* Button Styling */
+.btn {
+  display: inline-block;
+  margin-top: 20px;
+  background: linear-gradient(45deg, #ff6600, #ffcc00);
+  color: #fff;
+  padding: 12px 25px;
+  border-radius: 30px;
+  font-size: 1.2rem;
+  text-decoration: none;
+  transition: 0.3s;
+  box-shadow: 0 0 10px #ff9900;
+}
+
+.btn:hover {
+  background: linear-gradient(45deg, #ffcc00, #ff6600);
+  box-shadow: 0 0 20px #ff6600;
+}
+
+/* Decorative Lights */
+.lights {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  padding: 10px 0;
+  background: transparent;
+}
+
+.light {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: red;
+  animation: blink 1s infinite alternate;
+}
+
+.light:nth-child(2) { background: yellow; animation-delay: 0.2s; }
+.light:nth-child(3) { background: green; animation-delay: 0.4s; }
+.light:nth-child(4) { background: orange; animation-delay: 0.6s; }
+.light:nth-child(5) { background: pink; animation-delay: 0.8s; }
+
+@keyframes blink {
+  from { opacity: 1; transform: scale(1); }
+  to { opacity: 0.4; transform: scale(1.2); }
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 15px;
+  background: linear-gradient(90deg, #ff6600, #ffcc00);
+  color: #fff;
+  font-weight: bold;
+  text-shadow: 2px 2px 5px #000;
+}

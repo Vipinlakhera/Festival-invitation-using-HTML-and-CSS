@@ -1,0 +1,537 @@
+  <!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Diwali Dhamaka — Grand Celebration 2025</title>
+<meta name="description" content="Join our Grand Diwali Celebration — lights, sweets, music, awards, family & fireworks!" />
+<style>
+  /* ========= Base & Reset ========= */
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%}
+  body{
+    font-family: "Segoe UI", Roboto, Arial, sans-serif;
+    background: radial-gradient(circle at 10% 10%, #1a0b12 0%, #07030a 60%), linear-gradient(180deg,#1a0b12 0%, #07030a 100%);
+    color:#fff;
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+    line-height:1.5;
+  }
+  a{color:inherit;text-decoration:none}
+
+  /* ===== Container ===== */
+  .container{max-width:1100px;margin:0 auto;padding:28px}
+
+  /* ===== Hero / Sky with fireworks (canvas) ===== */
+  .hero {
+    position:relative;
+    overflow:hidden;
+    border-radius:18px;
+    margin-bottom:20px;
+    box-shadow:0 14px 60px rgba(2,6,12,0.6);
+  }
+  canvas#sky{display:block;width:100%;height:360px;background:
+    linear-gradient(180deg, rgba(12,6,0,0.25), rgba(0,0,0,0.25)),
+    url("https://source.unsplash.com/1600x900/?diya,deepavali") center/cover no-repeat;
+    filter:brightness(.9);
+  }
+
+  .hero-overlay{
+    position:absolute;inset:0;display:flex;align-items:center;justify-content:center;pointer-events:none;
+  }
+  .badge{
+    pointer-events:auto;
+    background:linear-gradient(90deg,#ffb347,#ff6a00);
+    color:#081018;
+    padding:22px 28px;border-radius:14px;box-shadow:0 20px 40px rgba(0,0,0,0.5);
+    text-align:center;max-width:900px;margin:16px;
+  }
+  .badge h1{font-size:30px;letter-spacing:0.6px;margin-bottom:6px}
+  .badge p{margin-bottom:12px;font-weight:600}
+  .btn{
+    display:inline-block;padding:10px 18px;border-radius:999px;font-weight:800;background:#081018;color:#ffd873;box-shadow:0 8px 24px rgba(255,160,60,0.18);
+  }
+  .controls{margin-top:10px;display:flex;gap:10px;justify-content:center;align-items:center}
+
+  /* ===== Sticky nav ===== */
+  .topbar{position:sticky;top:12px;z-index:60;display:flex;justify-content:center}
+  .nav{background:linear-gradient(90deg,rgba(0,0,0,0.35), rgba(0,0,0,0.45));padding:8px 12px;border-radius:999px;display:flex;gap:10px;backdrop-filter: blur(6px)}
+  .nav a{padding:8px 12px;border-radius:10px;color:rgba(255,255,255,0.92);font-weight:700}
+  .nav a:hover{background:rgba(255,255,255,0.04);color:#ffdf9a}
+
+  /* ===== Sections ===== */
+  section.panel{
+    background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+    margin:20px 0;padding:20px;border-radius:14px;box-shadow:0 8px 28px rgba(2,6,12,0.5);
+  }
+  h2{color:#ffd36b;margin-bottom:10px;text-shadow:0 1px 6px rgba(0,0,0,0.6)}
+  p.lead{color:rgba(255,255,255,0.9);font-weight:600}
+
+  /* ===== Countdown ===== */
+  .countdown{display:flex;gap:14px;justify-content:center;margin-top:6px}
+  .countdown .time{background:rgba(0,0,0,0.35);padding:12px 16px;border-radius:10px;min-width:80px}
+  .time .num{font-size:20px;font-weight:800;color:#ffefc9}
+  .time .label{font-size:12px;color:rgba(255,255,255,0.7)}
+
+  /* ===== Two-column responsive layout ===== */
+  .grid{display:grid;grid-template-columns:1fr 360px;gap:18px;align-items:start}
+  @media (max-width:980px){.grid{grid-template-columns:1fr}}
+
+  /* ===== Left content styling ===== */
+  .content {padding:6px}
+  .lead-block{background:linear-gradient(90deg, rgba(255,170,100,0.06), rgba(255,120,80,0.03));padding:14px;border-radius:10px;margin-bottom:12px}
+
+  /* ===== Right side card ===== */
+  .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:14px;border-radius:12px;border:1px solid rgba(255,255,255,0.02)}
+  .card h3{color:#ffd36b;margin-bottom:8px}
+  .small{font-size:0.95rem;color:rgba(255,255,255,0.85)}
+
+  /* ===== Events / competitions ===== */
+  .events{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+  .event{background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(0,0,0,0.06));padding:12px;border-radius:10px;border-left:6px solid rgba(255,200,100,0.12)}
+  .event h4{color:#ffd36b;margin-bottom:6px}
+
+  /* ===== Awards grid ===== */
+  .awards{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px}
+  .award{padding:14px;border-radius:10px;text-align:center;background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(0,0,0,0.06))}
+  .award .icon{font-size:28px;margin-bottom:8px}
+
+  /* ===== Menu / Sweets ===== */
+  .menu-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+  @media (max-width:760px){.menu-grid{grid-template-columns:repeat(2,1fr)}}
+  .menu-item{background:rgba(255,255,255,0.02);padding:10px;border-radius:8px;border-left:4px solid #ffb86b}
+
+  /* ===== Guests / people ===== */
+  .people{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px}
+  .person{background:rgba(255,255,255,0.02);padding:10px;border-radius:10px;text-align:center}
+  .person img{width:100%;height:120px;object-fit:cover;border-radius:8px;margin-bottom:8px;border:3px solid rgba(255,200,120,0.12)}
+
+  /* ===== Family gallery ===== */
+  .gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+  .gallery img{width:100%;height:180px;object-fit:cover;border-radius:10px;border:3px solid rgba(255,200,120,0.08)}
+
+  /* ===== Diya flicker (decorative) ===== */
+  .diyas{display:flex;gap:8px;justify-content:center;margin-top:12px}
+  .diya{width:44px;height:44px;border-radius:50%;background:linear-gradient(0deg,#ffefc9,#ffd36b);position:relative;box-shadow:0 6px 16px rgba(255,160,50,0.12)}
+  .flame{position:absolute;left:50%;top:6px;width:10px;height:14px;background:linear-gradient(180deg,#ffd36b,#ff8a00);border-radius:50%;transform: translateX(-50%);box-shadow:0 0 12px rgba(255,150,30,0.6);animation:flicker 1.6s infinite}
+  .flame::after{content:"";position:absolute;left:50%;top:3px;width:6px;height:8px;background:#fff6d6;border-radius:50%;transform:translateX(-50%) scale(.9)}
+  @keyframes flicker{
+    0%{transform:translateX(-50%) translateY(0) scaleY(1)}
+    40%{transform:translateX(-50%) translateY(-1px) scaleY(1.12)}
+    100%{transform:translateX(-50%) translateY(0) scaleY(1)}
+  }
+
+  /* ===== RSVP ticket button ===== */
+  .rsvp{display:flex;gap:10px;align-items:center;justify-content:center;margin-top:12px}
+  .ticket {background:linear-gradient(90deg,#ffd36b,#ff8a00);color:#081018;padding:12px 18px;border-radius:999px;font-weight:900;box-shadow:0 12px 34px rgba(255,140,60,0.14)}
+
+  /* ===== Footer ===== */
+  footer{padding:20px;text-align:center;color:#ffd36b;margin-top:28px}
+  small{display:block;color:rgba(255,255,255,0.6);margin-top:8px}
+
+  /* ===== Responsive tweaks ===== */
+  @media (max-width:540px){
+    .badge h1{font-size:20px}
+    canvas#sky{height:240px}
+  }
+</style>
+</head>
+<body>
+
+  <!-- top nav -->
+  <div class="container topbar">
+    <nav class="nav">
+      <a href="#about">About</a>
+      <a href="#events">Events</a>
+      <a href="#awards">Awards</a>
+      <a href="#menu">Menu</a>
+      <a href="#guests">Guests</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#rsvp">RSVP</a>
+    </nav>
+  </div>
+
+  <!-- hero / sky with canvas for fireworks -->
+  <div class="hero container">
+    <canvas id="sky" width="1600" height="360" aria-hidden="true"></canvas>
+    <div class="hero-overlay">
+      <div class="badge">
+        <h1>Diwali Dhamaka — Festival of Lights 2025</h1>
+        <p>Lights • Dance • Sweets • Awards • Family • Fireworks</p>
+
+        <!-- countdown -->
+        <div id="countdown" class="countdown" aria-live="polite">
+          <div class="time"><div class="num" id="days">--</div><div class="label">Days</div></div>
+          <div class="time"><div class="num" id="hours">--</div><div class="label">Hours</div></div>
+          <div class="time"><div class="num" id="minutes">--</div><div class="label">Minutes</div></div>
+          <div class="time"><div class="num" id="seconds">--</div><div class="label">Seconds</div></div>
+        </div>
+
+        <!-- controls: music toggle & ticket -->
+        <div class="controls" style="margin-top:12px">
+          <button id="musicBtn" class="btn" title="Play / Pause music" aria-pressed="false">🎵 Play Music</button>
+          <a href="#rsvp" class="btn" style="background:#081018;color:#ffd36b;border:2px solid rgba(255,215,120,0.08)">🎟 Get Ticket</a>
+        </div>
+
+        <div class="diyas" aria-hidden="true" style="margin-top:12px">
+          <div class="diya"><span class="flame"></span></div>
+          <div class="diya"><span class="flame"></span></div>
+          <div class="diya"><span class="flame"></span></div>
+          <div class="diya"><span class="flame"></span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- main content -->
+  <main class="container grid" role="main">
+    <div class="content">
+
+      <!-- About -->
+      <section id="about" class="panel">
+        <h2>About Diwali</h2>
+        <p class="lead">Diwali is the Festival of Lights — a time to welcome light, banish darkness, celebrate togetherness, and share sweets. Our community celebration blends tradition with modern joy: dance, music, family time, and an unforgettable fireworks finale.</p>
+      </section>
+
+      <!-- Events -->
+      <section id="events" class="panel">
+        <h2>Featured Events & Competitions</h2>
+        <p class="small">Talented performers, enthusiastic participants and warm audience — join these exciting contests:</p>
+        <div class="events" aria-hidden="false">
+          <div class="event">
+            <h4>Best Couple Dance</h4>
+            <p>Traditional & contemporary categories — judges score on emotion, chemistry & creativity.</p>
+          </div>
+          <div class="event">
+            <h4>Friendship Forever</h4>
+            <p>Group performances celebrating real friend stories — teamwork & heart win prizes.</p>
+          </div>
+          <div class="event">
+            <h4>Best Dress Award</h4>
+            <p>Traditional, fusion or inventive — wear your brightest outfit and shine!</p>
+          </div>
+          <div class="event">
+            <h4>Rangoli Contest</h4>
+            <p>Use colors & creativity to tell a story on the floor — family & student categories.</p>
+          </div>
+          <div class="event">
+            <h4>Sweet Stall Champion</h4>
+            <p>Community stalls compete for taste & presentation — people’s choice ribbon included.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Awards -->
+      <section id="awards" class="panel">
+        <h2>Awards & Prizes</h2>
+        <div class="awards">
+          <div class="award"><div class="icon">🏆</div><h4>Best Couple Dance</h4><p>Cash prize + trophy + stage feature</p></div>
+          <div class="award"><div class="icon">🤝</div><h4>Friendship Forever</h4><p>Certificate + special hamper for the winning group</p></div>
+          <div class="award"><div class="icon">👗</div><h4>Best Dress</h4><p>Design voucher + crown & sash on stage</p></div>
+          <div class="award"><div class="icon">👨‍👩‍👧‍👦</div><h4>Best Family Act</h4><p>Family photoshoot voucher + picnic hamper</p></div>
+        </div>
+      </section>
+
+      <!-- Menu & Sweets -->
+      <section id="menu" class="panel">
+        <h2>Feast & Sweets</h2>
+        <p class="small">We have <strong>12 signature sweets</strong> and a full festive menu — enough sweetness to fill the night.</p>
+        <div class="menu-grid" aria-hidden="false" style="margin-top:12px">
+          <div class="menu-item">Gulab Jamun</div>
+          <div class="menu-item">Jalebi</div>
+          <div class="menu-item">Rasgulla</div>
+          <div class="menu-item">Kaju Katli</div>
+          <div class="menu-item">Ladoo</div>
+          <div class="menu-item">Barfi</div>
+          <div class="menu-item">Rabri</div>
+          <div class="menu-item">Kulfi</div>
+          <div class="menu-item">Paneer Butter Masala</div>
+          <div class="menu-item">Veg Biryani</div>
+          <div class="menu-item">Chaat & Pani Puri</div>
+          <div class="menu-item">Masala Chai & Lassi</div>
+        </div>
+      </section>
+
+    </div><!-- /.content -->
+
+    <!-- Right column (cards) -->
+    <aside class="card">
+
+      <!-- quick info -->
+      <div style="margin-bottom:12px">
+        <h3>Quick Info</h3>
+        <p class="small"><strong>Date:</strong> 29 Oct 2025 • <strong>Time:</strong> 6:00 PM onwards • <strong>Venue:</strong> Sunshine Garden Amphitheatre</p>
+      </div>
+
+      <!-- guests -->
+       <!-- Celebrity Guests -->
+<section id="celebrities" class="panel">
+  <h2>Celebrity Guests</h2>
+  <div class="celebrity-grid" aria-label="Celebrity Guests">
+    <div class="celebrity">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSiWpWhmoFu7TYfO3IXsPRqQzCzUqNy1SLpVg&s" alt="Satinder Sartaj"style="float: left; margin-right: 50px; width: 300px; height: auto;">
+      <strong>Satinder Sartaj</strong>
+    </div>
+    <div class="celebrity">
+      <img src="data:image/jpeg;base64,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" alt="Mahi Sharma">
+      <strong>Mahi Sharma</strong>
+    </div>
+    <div class="celebrity">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBl5A2OKQRGG4wuJFhL-qEGxLy02b5GmEm0w&s" alt="Pranjal Dahiya"style="float: left; margin-right: 50px; width: 300px; height: auto;">
+      <strong>Pranjal Dahiya</strong>
+    </div>
+    <div class="celebrity">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQMc2T_AhEZNOgQrS5gldkKdXWgS3BCRCUXcw&s" alt="Renuka Panwar"style="float: left; margin-right: 50px; width: 300px; height: auto;">
+      <strong>Renuka Panwar</strong>
+    </div>
+    <div class="celebrity">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcROaRtdYrW2Tr3m074jKiIdgywx_1jsquboQA&s" alt="Karan Aujla"style="float: left; margin-right: 50px; width: 300px; height: auto;">
+      <strong>Karan Aujla</strong>
+    </div>
+  </div>
+</section>
+
+<!-- Sweets Gallery -->
+<section id="sweets" class="panel">
+  <h2>Signature Sweets Gallery</h2>
+  <div class="sweets-gallery">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcShekhZ50PUncO4GvKKrUNgZuyUBnP93lMziw&s" alt="Gulab Jamun">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQNZDElXqLXrgT6wwXiJBOP4ijadak260TtQQ&s" alt="Jalebi">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR0D4gnjrrB4K-34NsRgyj90ofqq2VNgAdpKw&s" alt="Rasgulla">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSycwbRwb60J7wi1vKJVAS_8hJFM3oIo4U33g&s" alt="Kaju Katli">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTiJC_rd9V4Ojk8iCUG_I48Ed9D0-_o1vx_4g&s" alt="Ladoo">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQPVnWf006sFDOnVxIattzNC9nBmCXru1bduQ&s" alt="Barfi">
+  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTBeJFsPJL8Zx8j2G4x712oWfFGTlhRmflXaQ&s" alt="Coldrinks">
+</div>
+</section>
+
+
+
+
+      <div style="margin-bottom:12px; text-align:right;">
+  <h3>Main Guests</h3>
+  <div class="people" style="display:flex; gap:20px; justify-content:flex-end;">
+    <div class="person" style="display:flex; flex-direction: row-reverse; align-items:center; gap:20px; text-align:right;">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTSoZvkz0oA2H_NXc2gFxZ3eeF4VyzelujJxg&s" alt="Amitabh Bachchan" style="float: left; margin-right: 50px; width: 300px; height: auto;">
+      <div>
+        <strong>Amitabh Bachchan</strong><br><small>Chief Guest</small>
+      </div>
+    </div>
+    <div class="person" style="display:flex; flex-direction: row-reverse; align-items:center; gap:20px; text-align:right;">
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT80Yb58fRZb_H79wdcZLnkKOW3q6aDOj7aAQ&s"alt="Sapna choudhary"style="float: left; margin-right: 50px; width: 300px; height: auto;">
+      <div>
+        <div> <strong>Sapna Choudhary</strong><br><small>Guest Artist</small>
+      </div>
+    </div>
+    <div class="person" style="display:flex; flex-direction: row-reverse; align-items:center; gap:20px; text-align:right;">
+      <img src="data:image/jpeg;base64,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" alt="Rising Star Crew" style="width:120px; height:120px; object-fit:cover; border-radius:12px; border: 2px solid rgba(255,200,120,0.3);">
+      <div>
+        <strong>Rising Star Crew</strong><br><small>Official Media</small>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+      <!-- family gallery -->
+      <div>
+    <h3>Family Moments</h3>
+    <div class="gallery" style="margin-top:8px; text-align: left;">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTCa3uFvsvGiWpgaBsIcPxkgRme6pO3w3rfWw&s" alt="REAL PEACE">
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSfaGamhBPCAZOz5cFQACIJhR9n6xfhKdLJ7Q&s"alt="REAL HAPPINESS">
+    </div>
+</div>
+
+
+      <!-- RSVP -->
+      <div style="margin-top:12px">
+        <div class="rsvp">
+          <a class="ticket" href="#rsvp">🎟 Reserve Free Ticket</a>
+        </div>
+        <small>Pre-book to get free sweet kit (limited)</small>
+      </div>
+
+    </aside>
+  </main>
+
+  <!-- Gallery (wider) -->
+  <div class="container">
+    <section class="panel">
+      <h2>Gallery — Rangoli, Diyas & Crackers</h2>
+      <div class="gallery" aria-hidden="false">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTRdxgPOPrYn-6cVfpIegzh45d_md9UNe6PWA&s" alt="Rangoli">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRHZ3_0vMgb2NB4jxrVJoTajzlte15AoamHZw&s" alt="Diyas">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS9fC4xn4gZz5KSZJu-3Mn2BCcHiy1CAFeiSQ&s" alt="Fireworks">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTo6b6jk2c2v6FzhlLg0zHeCul-nK9ScO2FDA&s" alt="Family festival">
+      </div>
+      <p class="small" style="margin-top:12px">At the end of the evening — the sky will sparkle with a grand fireworks display. Please follow safety guidelines and enjoy responsibly.</p>
+    </section>
+  </div>
+
+  <!-- RSVP details -->
+  <div class="container">
+    <section id="rsvp" class="panel" aria-labelledby="rsvp-heading">
+      <h2 id="rsvp-heading">Reserve Your Spot</h2>
+      <p class="lead">Fill a quick form on the event page (or register at the gate). Pre-book now to get a complimentary sweet kit.</p>
+      <p class="small">Contact: <strong>fest2025@celebrations.com</strong> • Phone: <strong>+91 98765 43210</strong></p>
+    </section>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      © 2025 • Diwali Dhamaka — Festival of Lights • All rights reserved
+      <small>Built with ❤️ • Replace placeholder photos with your local images for best results</small>
+    </div>
+  </footer>
+
+  <!-- ========== Audio (music) ========== -->
+  <!-- Replace the src with any royalty-free instrumental mp3 (Pixabay / Free Music Archive / your file) -->
+  <audio id="bgMusic" loop crossorigin="anonymous">
+    <!-- example: uncomment and replace with your file URL -->
+    <!-- <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio-example.mp3?filename=soft-instrumental-12345.mp3" type="audio/mpeg"> -->
+  </audio>
+
+<script>
+/* ========= Countdown ========= */
+/* Change this to your event date/time */
+const targetDate = new Date('2025-10-29T18:00:00'); // change if needed
+function updateCountdown(){
+  const now = new Date();
+  let diff = targetDate - now;
+  if(diff < 0) diff = 0;
+  const days = Math.floor(diff / (1000*60*60*24));
+  const hours = Math.floor((diff / (1000*60*60)) % 24);
+  const minutes = Math.floor((diff / (1000*60)) % 60);
+  const seconds = Math.floor((diff / 1000) % 60);
+  document.getElementById('days').textContent = days;
+  document.getElementById('hours').textContent = String(hours).padStart(2,'0');
+  document.getElementById('minutes').textContent = String(minutes).padStart(2,'0');
+  document.getElementById('seconds').textContent = String(seconds).padStart(2,'0');
+}
+updateCountdown();
+setInterval(updateCountdown, 1000);
+
+/* ========= Music Toggle ========= */
+const musicBtn = document.getElementById('musicBtn');
+const music = document.getElementById('bgMusic');
+let musicPlaying = false;
+musicBtn.addEventListener('click', ()=>{
+  if(!musicPlaying){
+    // If user wants audio, they must supply a valid source in the <audio> tag above.
+    music.play().catch(()=>{ alert('No music file loaded. Add a valid mp3 source in the audio tag or allow autoplay in your browser.'); });
+    musicBtn.textContent = '🔊 Music On';
+    musicBtn.setAttribute('aria-pressed','true');
+    musicPlaying = true;
+  } else {
+    music.pause();
+    musicBtn.textContent = '🎵 Play Music';
+    musicBtn.setAttribute('aria-pressed','false');
+    musicPlaying = false;
+  }
+});
+
+/* ========= Fireworks (canvas) =========
+   Simple lightweight firework particles effect.
+   Not heavy; runs in modern browsers.
+*/
+(function(){
+  const canvas = document.getElementById('sky');
+  const ctx = canvas.getContext('2d');
+  let W = canvas.width = canvas.clientWidth;
+  let H = canvas.height = canvas.clientHeight;
+  window.addEventListener('resize', ()=>{ W = canvas.width = canvas.clientWidth; H = canvas.height = canvas.clientHeight; });
+
+  // particle arrays
+  const fireworks = [];
+  const particles = [];
+
+  function rand(min,max){ return Math.random()*(max-min)+min; }
+  function hue() { return Math.floor(rand(0,360)); }
+
+  // Firework class
+  class Firework {
+    constructor(){
+      this.x = rand(50, W-50);
+      this.y = H + 10;
+      this.targetY = rand(H*0.2, H*0.6);
+      this.speed = rand(4,7);
+      this.color = `hsl(${hue()}, 90%, 60%)`;
+      this.size = rand(2,4);
+    }
+    update(){
+      this.y -= this.speed;
+      this.speed *= 1.005;
+      if(this.y <= this.targetY){
+        // explode
+        for(let i=0;i<40;i++){
+          particles.push(new Particle(this.x, this.y, this.color));
+        }
+        return false; // remove firework
+      }
+      return true;
+    }
+    draw(){
+      ctx.beginPath();
+      ctx.fillStyle = this.color;
+      ctx.arc(this.x, this.y, this.size, 0, Math.PI*2);
+      ctx.fill();
+    }
+  }
+
+  class Particle {
+    constructor(x,y,color){
+      this.x = x; this.y = y;
+      this.vx = rand(-6,6); this.vy = rand(-6,6);
+      this.alpha = 1;
+      this.decay = rand(0.015,0.03);
+      this.color = color;
+      this.size = rand(1,3);
+    }
+    update(){
+      this.x += this.vx;
+      this.y += this.vy + 0.3; // gravity
+      this.vx *= 0.99;
+      this.vy *= 0.99;
+      this.alpha -= this.decay;
+      if(this.alpha <= 0) return false;
+      return true;
+    }
+    draw(){
+      ctx.beginPath();
+      ctx.globalAlpha = Math.max(this.alpha,0);
+      ctx.fillStyle = this.color;
+      ctx.arc(this.x, this.y, this.size, 0, Math.PI*2);
+      ctx.fill();
+      ctx.globalAlpha = 1;
+    }
+  }
+
+  // spawn fireworks periodically
+  let last = 0;
+  function loop(t){
+    requestAnimationFrame(loop);
+    const now = t;
+    if(now - last > 800){ fireworks.push(new Firework()); last = now; }
+    // fade canvas slightly
+    ctx.fillStyle = 'rgba(0,0,0,0.18)';
+    ctx.fillRect(0,0,W,H);
+
+    // update draw fireworks
+    for(let i=fireworks.length-1;i>=0;i--){
+      if(!fireworks[i].update()) fireworks.splice(i,1);
+      else fireworks[i].draw();
+    }
+    // update particles
+    for(let i=particles.length-1;i>=0;i--){
+      if(!particles[i].update()) particles.splice(i,1);
+      else particles[i].draw();
+    }
+  }
+  loop(0);
+})();
+
+</script>
+</body>
+</html>
